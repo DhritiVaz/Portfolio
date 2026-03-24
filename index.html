@@ -1,103 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dhriti Vaz · Portfolio</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="noise"></div>
-  <header class="site-header">
-    <div class="logo">DV</div>
+  <canvas id="bg-canvas"></canvas>
+  <header>
+    <span class="logo">DV</span>
     <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
+      <button class="nav-btn active" data-tab="home">Home</button>
+      <button class="nav-btn" data-tab="about">About</button>
+      <button class="nav-btn" data-tab="projects">Projects</button>
+      <button class="nav-btn" data-tab="skills">Skills</button>
+      <button class="nav-btn" data-tab="experience">Experience</button>
+      <button class="nav-btn" data-tab="contact">Contact</button>
+      <button class="nav-btn" data-tab="resume">Resume</button>
     </nav>
-    <a class="pill" href="https://www.linkedin.com/in/dhritivaz/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <div class="header-links">
+  <a href="https://github.com/dhritivaz" target="_blank">GitHub ↗</a>
+  <a href="https://www.linkedin.com/in/dhritivaz/" target="_blank">LinkedIn ↗</a>
+</div>
+
   </header>
 
   <main>
-    <section id="home" class="hero">
-      <div class="eyebrow">Web Developer · VIT Chennai · India</div>
-      <h1>Dhriti Vaz</h1>
-      <p class="lede">Building deliberate, beginner-friendly full-stack projects, fixing things fast, and learning something new every day.</p>
-    </section>
 
-    <section id="about" class="section about full-height">
-      <div class="section-header">
-        <p class="eyebrow">About</p>
-        <h2>Practical builder with a learner’s mindset</h2>
-        <p class="muted">I keep the stack lean, ship small, and refine quickly—prioritizing clarity over flash.</p>
-      </div>
-      <div class="about-grid">
-        <article class="glass">
-          <h3>How I work</h3>
-          <p class="muted">Start from a real need, sketch flows, build the smallest slice, and iterate with feedback. Clean dashboards, tidy data, fewer clicks.</p>
-        </article>
-        <article class="glass">
-          <h3>What I’m focused on</h3>
-          <p class="muted">Centralized Billing System: customer, invoice, and payment flows that feel like Tally—built with HTML/CSS/JS + straightforward APIs.</p>
-        </article>
-        <article class="glass">
-          <h3>Mindset</h3>
-          <p class="muted">Hands-on learning across C, C++, Java, JavaScript, Python; dabbling in React basics, Node/Express, and Supabase for fast backend starts.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="projects" class="section full-height">
-      <div class="section-header">
-        <p class="eyebrow">Selected work</p>
-        <h2>Projects built to learn by doing</h2>
-        <p class="muted">Real problems, simple stacks, lots of iteration.</p>
-      </div>
-      <div class="cards" id="projectsGrid"></div>
-    </section>
-
-    <section id="skills" class="section full-height">
-      <div class="section-header">
-        <p class="eyebrow">Toolkit</p>
-        <h2>Languages, tools, and habits</h2>
-        <p class="muted">Balanced between fundamentals and practical shipping.</p>
-      </div>
-      <div class="skill-grid" id="skillGrid"></div>
-    </section>
-
-    <section id="experience" class="section full-height">
-      <div class="section-header">
-        <p class="eyebrow">Trajectory</p>
-        <h2>Experience & learning path</h2>
-      </div>
-      <div class="timeline" id="timeline"></div>
-    </section>
-
-    <section id="contact" class="section contact full-height">
-      <div class="contact-card">
-        <p class="eyebrow">Let’s connect</p>
-        <h3>Open to collaborations, internships, and build-fast projects.</h3>
-        <p class="muted">Reach out for full-stack experiments, clean dashboards, or to share a learning resource.</p>
-        <div class="actions">
-          <a class="btn primary" href="mailto:dhriti.vaz@example.com">Email</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/dhritivaz/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <!-- HOME -->
+    <section class="tab active" id="tab-home">
+      <div class="home-inner">
+        <p class="eyebrow">Web Developer · VIT Chennai · India</p>
+        <h1>DHRITI VAZ</h1>
+        <p class="lede">Building deliberate, beginner-friendly full-stack projects, fixing things fast, and learning
+          something new every day.</p>
+        <div class="btn-row">
+          <button class="btn primary" onclick="switchTab('projects')">View projects</button>
+          <button class="btn ghost" onclick="switchTab('contact')">Get in touch</button>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer class="site-footer">
-    <p>Built with focus, shipped with care — Dhriti Vaz</p>
-    <div class="dots" aria-hidden="true"></div>
-  </footer>
+    <!-- ABOUT -->
+    <section class="tab" id="tab-about">
+      <div class="centered-col">
+        <p class="eyebrow">About</p>
+        <h2>Practical builder<br>with a learner's mindset</h2>
+        <p class="lede-sm">I keep the stack lean, ship small, and refine quickly — prioritizing clarity over flash.</p>
+        <div class="about-grid">
+          <article class="glass-card">
+            <h3>How I work</h3>
+            <p>Start from a real need, sketch flows, build the smallest slice, and iterate with feedback. Clean
+              dashboards, tidy data, fewer clicks.</p>
+          </article>
+          <article class="glass-card">
+            <h3>What I'm focused on</h3>
+            <p>Centralized Billing System: customer, invoice, and payment flows that feel like Tally — built with
+              HTML/CSS/JS + straightforward APIs.</p>
+          </article>
+          <article class="glass-card">
+            <h3>Mindset</h3>
+            <p>Hands-on learning across C, C++, Java, JavaScript, Python; dabbling in React basics, Node/Express, and
+              Supabase for fast backend starts.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="tab" id="tab-projects">
+      <div class="centered-col">
+        <p class="eyebrow">Selected work</p>
+        <h2>Projects built to<br>learn by doing</h2>
+        <div class="project-grid">
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Centralized Billing System</h3>
+              <a href="https://github.com/dhritivaz/centralised-billing-system" target="_blank" rel="noreferrer"
+                class="ext-link">↗</a>
+            </div>
+            <p class="project-tagline">Internship project inspired by Tally: customers, invoices, payments, and clear
+              dashboards.</p>
+            <ul>
+              <li>Built lean HTML/CSS/JS front-end with simple REST endpoints</li>
+              <li>CRUD for customers, invoices, and payment tracking</li>
+              <li>Focused on clarity and reliability over flashy UI</li>
+            </ul>
+            <div class="tech-tags">
+              <span>TypeScript</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Node.js</span><span>Express</span><span>PostgreSQL</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Portfolio & Experiments</h3>
+              <a href="https://github.com/dhritivaz" target="_blank" rel="noreferrer" class="ext-link">↗</a>
+            </div>
+            <p class="project-tagline">Lightweight playground for React basics, REST experiments, and Supabase practice.
+            </p>
+            <ul>
+              <li>Iterative UI experiments with reusable components</li>
+              <li>Hands-on learning across C, C++, Java, JavaScript, and Python</li>
+              <li>Keeps focus on fundamentals: clean structure and readable code</li>
+            </ul>
+            <div class="tech-tags">
+              <span>React</span><span>Supabase</span><span>Node</span><span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Expense Tracker</h3>
+              <a href="YOUR_LIVE_LINK" target="_blank" class="ext-link">↗</a>
+            </div>
+            <p class="project-tagline">
+              Full-stack expense tracker with smart insights and natural language input.
+            </p>
+            <ul>
+              <li>Multi-user app with secure login, deployed on Render</li>
+              <li>Natural language parsing ("lunch 80 today") → structured entries</li>
+              <li>Insights engine with savings recommendations & spending analysis</li>
+              <li>Interactive charts using Chart.js</li>
+            </ul>
+            <div class="tech-tags">
+              <span>Python</span><span>Flask</span><span>PostgreSQL</span>
+              <span>Chart.js</span><span>JavaScript</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-top">
+              <h3>Student Dashboard System</h3>
+            </div>
+            <p class="project-tagline">
+              Full-stack dashboard with admin auth and modular React frontend.
+            </p>
+            <ul>
+              <li>Built REST APIs with Node.js & Express</li>
+              <li>Converted static UI into dynamic React SPA</li>
+              <li>Managed database with Prisma ORM</li>
+            </ul>
+            <div class="tech-tags">
+              <span>React</span><span>Node.js</span><span>PostgreSQL</span>
+              <span>Prisma</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="tab" id="tab-skills">
+      <div class="centered-col">
+        <p class="eyebrow">Toolkit</p>
+        <h2>Languages, tools,<br>and habits</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h4>Languages</h4>
+            <div class="chips">
+              <span>C</span><span>C++</span><span>Java</span><span>JavaScript</span><span>Python</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Web</h4>
+            <div class="chips">
+              <span>HTML</span><span>CSS</span><span>React</span><span>Node.js</span><span>Express</span><span>REST
+                APIs</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4>Database</h4>
+            <div class="chips">
+              <span>PostgreSQL</span><span>Supabase</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="tab" id="tab-experience">
+      <div class="centered-col">
+        <p class="eyebrow">Trajectory</p>
+        <h2>Experience &<br>learning path</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta">
+                <span class="tl-time">2025</span>
+              </div>
+              <h4>Intern · Centralized Billing System</h4>
+              <p class="tl-place">Focused build, HTML/CSS/JS + APIs</p>
+              <p>Created a Tally-style billing tool with customer, invoice, and payment flows. Learned to keep
+                dashboards clean and data consistent.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <div class="tl-meta">
+                <span class="tl-time">Ongoing</span>
+              </div>
+              <h4>Full-stack fundamentals</h4>
+              <p class="tl-place">VIT Chennai</p>
+              <p>Strengthening core languages (C, C++, Java, JavaScript, Python) and applying them to small, real-world
+                projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="tab" id="tab-contact">
+      <div class="centered-col contact-col">
+        <p class="eyebrow">Let's connect</p>
+        <h2>Open to collaborations,<br>internships & build-fast projects.</h2>
+        <p class="lede-sm">Reach out for full-stack experiments, clean dashboards, or to share a learning resource.</p>
+        <div class="contact-card">
+
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a href="mailto:dhriti.vaz@gmail.com" class="contact-value">
+            dhriti.vaz@gmail.com
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <a href="https://github.com/dhritivaz" target="_blank" class="contact-value">
+            github.com/dhritivaz
+          </a>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://linkedin.com/in/dhritivaz" target="_blank" class="contact-value">
+            linkedin.com/in/dhritivaz
+          </a>
+        </div>
+
+      </div>
+      </div>
+    </section>
+
+    <section class="tab" id="tab-resume">
+  <div class="centered-col resume-col">
+
+    <p class="eyebrow">Resume</p>
+    <h2>My Resume</h2>
+
+    <div class="resume-actions">
+      <a href="resume.pdf" target="_blank" class="btn primary">Open in new tab</a>
+      <a href="resume.pdf" download class="btn ghost">Download</a>
+    </div>
+
+    <div class="resume-frame">
+      <iframe src="resume.pdf"></iframe>
+    </div>
+
+  </div>
+</section>
+
+  </main>
 
   <script src="app.js"></script>
 </body>
+
 </html>
