@@ -449,7 +449,7 @@ nav.scrolled { border-color: var(--pale-sage); }
 .resume-viewer-wrap {
   background: #ECF0EA; flex: 1; min-height: 0;
   display: flex; align-items: center; justify-content: center; padding: 2rem 2rem 0;
-  overflow: hidden;
+  overflow-y: auto;
 }
 #resume-canvas { display: block; max-width: 100%; border-radius: 4px; box-shadow: var(--sh-card); }
 .resume-ph {
@@ -842,7 +842,13 @@ footer {
 <!-- Scripts -->
 <script>
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
+if (location.hash) history.replaceState(null, '', location.pathname);
+document.documentElement.style.scrollBehavior = 'auto';
+function _toTop() { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); }
+_toTop();
+document.addEventListener('DOMContentLoaded', _toTop);
+window.addEventListener('load', () => { _toTop(); requestAnimationFrame(() => { _toTop(); document.documentElement.style.scrollBehavior = ''; }); });
+window.addEventListener('pageshow', _toTop);
 
 /* ── Hamburger menu ──────────────────────────────────── */
 (function () {
@@ -927,7 +933,7 @@ function showIframeFallback() {
   const wrap = document.getElementById('resume-wrap');
   wrap.style.padding = '0';
   wrap.style.minHeight = 'unset';
-  wrap.innerHTML = `<iframe src="resume.pdf" style="width:100%;height:100%;border:none;display:block;flex:1;" title="Dhriti Vaz Resume"></iframe>`;
+  wrap.innerHTML = `<iframe src="resume.pdf#navpanes=0" style="width:100%;height:100%;border:none;display:block;flex:1;" title="Dhriti Vaz Resume"></iframe>`;
   // Hide controls that only work with PDF.js; browser toolbar handles zoom/nav
   ['r-prev','r-next','r-zin','r-zout','r-page'].forEach(id => {
     const el = document.getElementById(id);
